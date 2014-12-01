@@ -1,0 +1,10 @@
+{% extends "template.html" %}
+{% block content %}
+  <h1>Welcome to Alpha Legion Covert Ops.</h1>
+  <h3>Please login to access teamspeak list.</h3>
+    <form method="post" action="/">
+      {{ form.csrf_token }}
+      <p>{{ form.name.label }}: {{ form.name }}&nbsp;&nbsp;{{ form.password.label }}: {{ form.password }}&nbsp;&nbsp;<input type="submit" value="Submit"></p>
+     </form>
+    <p><em>Need an account? </em><a href="/register">Register.</a></p>
+{% endblock %}
