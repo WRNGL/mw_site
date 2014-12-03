@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm
+from sqlalchemy.exc import IntegrityError
 
 
 app = Flask(__name__)
@@ -25,7 +26,13 @@ def login_required(test):
 			return redirect(url_for('login'))
 	return wrap
 
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text, error), 'error')
 
+# Log Out
 @app.route('/logout/')
 def logout():
 	session.pop('logged_in', None)
@@ -76,6 +83,20 @@ def register():
                 form.email.data,
                 form.password.data,
             )
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Thank you for registering. You may log in.')
+                return redirect(url_for('login'))
+            except IntegrityError:
+                error = 'This username or email already exist. Please try another one.'
+                return render_template('register.html', form = form, error = error)
+        else:
+            return render_template('register.html', form = form, error = error)
+    if request.method == 'GET':
+        return render_template('register.html', form = form)
+
+'''
             db.session.add(new_user)
             db.session.commit()
             flash('Thanks for registering. Please login.')
@@ -84,7 +105,7 @@ def register():
             return render_template('register.html', form=form, error=error)
     if request.method == 'GET':
         return render_template('register.html', form=form)
-
+'''
 
 # teamspeak viewer
 @app.route('/teamspeak/')

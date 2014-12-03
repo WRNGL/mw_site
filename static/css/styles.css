@@ -1,14 +1,32 @@
+@font-face {
+    font-family: 'chaos'; /*a name to be used later*/
+    src: url('chaos.ttf'); /*URL to font*/
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  background-color: ffffff;
+}
+
 body {
   font-family: sans-serif;
   background: #eee;
+  background-image: url('http://i.imgur.com/3qFpQcd.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  padding: 170px 0px 0px 0px;
+  /*text-align: center;*/
 }
 
 a, h1, h2 {
-  color: #377BA8;
+  color: #009999;
+  font-family: 'Georgia';
 }
 
 h1, h2 {
-  font-family: 'Georgia', serif;
+  text-align: center;
+  font-family: 'chaos', serif;
   margin: 0;
 }
 
