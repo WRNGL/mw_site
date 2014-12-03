@@ -61,7 +61,7 @@ def login():
                 session['logged_in'] = True
                 session['user_id'] = u.id
                 flash('Successfully logged in.')
-                return redirect(url_for('teamspeak'))
+                return redirect(url_for('main'))
         else:
             return render_template(
                 "login.html",
@@ -106,6 +106,13 @@ def register():
     if request.method == 'GET':
         return render_template('register.html', form=form)
 '''
+
+# main - empty for now
+@app.route('/main')
+@login_required
+def main():
+    return render_template('main.html')
+
 
 # teamspeak viewer
 @app.route('/teamspeak/')
