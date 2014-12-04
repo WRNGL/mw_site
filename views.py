@@ -119,3 +119,9 @@ def main():
 @login_required
 def teamspeak():
     return render_template('teamspeak.html')
+
+# stata enter
+@app.route('/stat_submit/')
+@login_required
+def stat_submit():
+    return render_template('stat_submit.html')
