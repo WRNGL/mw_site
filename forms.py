@@ -35,6 +35,6 @@ class LoginForm(Form):
 		Length(max = 40)])
 
 class BaseStatsForm(Form):
-	name = TextField(
+	stats = TextField(
 		'BaseStats',
 		validators = [DataRequired()])

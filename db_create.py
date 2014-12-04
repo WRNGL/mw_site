@@ -9,7 +9,7 @@ from datetime import date
 db.create_all()
 
 # insert data
-db.session.add(User("testuser1", "admin@alpha-legion.pro", "password"))
+db.session.add(User("testuser1", "admin@alpha-legion.pro", "password", 1,2,3,4,5,6,7))
 
 # commit the changes
 db.session.commit()

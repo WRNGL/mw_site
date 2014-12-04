@@ -96,16 +96,6 @@ def register():
     if request.method == 'GET':
         return render_template('register.html', form = form)
 
-'''
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Thanks for registering. Please login.')
-            return redirect(url_for('login'))
-        else:
-            return render_template('register.html', form=form, error=error)
-    if request.method == 'GET':
-        return render_template('register.html', form=form)
-'''
 
 # main - empty for now
 @app.route('/main')
@@ -121,7 +111,25 @@ def teamspeak():
     return render_template('teamspeak.html')
 
 # stata enter
-@app.route('/stat_submit/')
+@app.route('/stat_submit/', methods = ['GET', 'POST'])
 @login_required
 def stat_submit():
+    '''
+    form = BaseStatsForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form.stats.data = req_basestats
+
+    if request.method == 'GET':
+        return render_template('stat_submit.html', form = form)
+    '''
     return render_template('stat_submit.html')
+
+
+
+    # return render_template('stat_submit.html')
+
+@app.route('/progress/')
+@login_required
+def progress():
+    return render_template('progress.html')
