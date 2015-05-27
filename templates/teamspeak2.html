@@ -1,22 +1,88 @@
-<!DOCTYPE html>
-<html>
+
+<script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+ $('.spoiler_links').click(function(){
+  $(this).parent().children('div.spoiler_body').toggle('normal');
+  return false;
+ });
+});
+</script>
+
+{% extends "template.html" %}
+{% block content %}
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<title>Alpha Legion Covert Ops</title>
+</head>
+
 
 <body>
-  <div class="container">
-    <h2>Bordered Table</h2>
-    <p>Teamspeak list</p>        
-    <table class="table table-bordered">
-    	<tbody>
-        <tr>
-          <td>
-          	<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+
+<center><h3>Новый список ТС (WIP)</h3></center>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<li><style type="text/css">
+ .spoiler_body {display:none;}
+ .spoiler_links {cursor:pointer;}
+</style>
+
+<div>
+ <a href="" class="spoiler_links">Alpha Legion</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1051659" style="width:280px; background-color:;"> </div>
+
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
 
 <script type="text/javascript">
 <!--
 var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1051659&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
 ts3v_display.init(ts3v_url_1, 1051659, 100);
 -->
-</script></td>
-</tr>
+</script></div></li>
+
+</div>
+<div class="col-md-3">
+<li><style type="text/css">
+ .spoiler_body {display:none;}
+ .spoiler_links {cursor:pointer;}
+</style>
+
+<div>
+ <a href="" class="spoiler_links">someoneelse</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1051659" style="width:280px; background-color:;"> </div>
+
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1051659&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1051659, 100);
+-->
+</script></div></li>
+</div>
+<div class="col-md-3">
+<h3>Top jew</h3>
+<li>crazybuck</li>
+<li>drunkblackstar</li>
+<li>HaMaT</li>
+</div>
+<div class="col-md-3">
+<h3>Top jew</h3>
+<li>crazybuck</li>
+<li>drunkblackstar</li>
+<li>HaMaT</li>
+</div>
+</div>
+</div>
+
+
+</body>
+</div>
+
+{% endblock %}

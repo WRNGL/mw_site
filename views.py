@@ -133,3 +133,15 @@ def stat_submit():
 @login_required
 def progress():
     return render_template('progress.html')
+
+
+@app.route('/statistics')
+@login_required
+def statistics():
+    return render_template('statistics.html')
+
+
+@app.route('/teamspeak2')
+@login_required
+def teamspeak2():
+    return render_template('teamspeak2.html')
