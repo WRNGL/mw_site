@@ -1,5 +1,7 @@
 {% extends "template.html" %}
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
+<script src="http://team.alpha-legion.pro/d3pie.min.js"></script>
 <p>Статистика юнита.</p>
 Статистика захардкожена, это всего лишь пример того, что может быть, а может и не быть, потому что:
 <br>
@@ -41,57 +43,16 @@
 	</div>
 
 <br>
+
+
+
+
 <br>
 
-<h3><center>Статистика за неделю</center></h3>
-
-<div class="learn-more">
-	  <div class="container">
-		<div class="row">
-	      <div class="col-md-3">
-			<h4>Нагнули больше всех</h4>
-			<ol>
-			<li>crazybuck - 210</li>
-			<li>Darksiski - 75</li>
-			<li>Serj99 - 49</li>
-		</ol>
-	      </div>
-		  <div class="col-md-3">
-			<h4>Слились больше всех</h4>
-			<ol>
-			<li>crazybuck - 69</li>
-			<li>Serj99 - 36</li>
-			<li>Darksiski - 35</li>
-		</ol>
-		  </div>
-		  <div class="col-md-3">
-			<h4>Заработали больше всех</h4>
-			<ol>
-			<li>crazybuck - ?</li>
-			<li>KRMZ - 11686630</li>
-			<li>Serj99 - 6756044</li>
-		</ol>
-		  </div>
-		  <div class="col-md-3">
-			<h4>Потратили больше всех</h4>
-			<ol>
-			<li>Darksiski - 27531522</li>
-			<li>human404 - 3507291</li>
-			<li>EmeraldRU - 1571547</li>
-		</ol>
-		  </div>
-	    </div>
-	  </div>
-	</div>
-
-
-
-<h3>wtf</h3>
 
 <div id="pieChart"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-<script src="http://team.alpha-legion.pro/d3pie.min.js"></script>
+
 <script>
 var pie = new d3pie("pieChart", {
 	"header": {
@@ -204,11 +165,7 @@ var pie = new d3pie("pieChart", {
 </script>
 
 
-
 <div id="pieChart"></div>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.4/d3.min.js"></script>
-<script src="d3pie.min.js"></script>
 <script>
 var pie = new d3pie("pieChart", {
 	"header": {
@@ -318,6 +275,442 @@ var pie = new d3pie("pieChart", {
 	}
 });
 </script>
+
+<h3><center>Статистика за неделю</center></h3>
+
+<br>
+
+<div class="learn-more">
+	  <div class="container">
+		<div class="row">
+	      <div class="col-md-3">
+			<h4>Нагнули больше всех</h4>
+			<ol>
+			<li>crazybuck - 210</li>
+			<li>Darksiski - 75</li>
+			<li>Serj99 - 49</li>
+		</ol>
+	      </div>
+		  <div class="col-md-3">
+			<h4>Слились больше всех</h4>
+			<ol>
+			<li>crazybuck - 69</li>
+			<li>Serj99 - 36</li>
+			<li>Darksiski - 35</li>
+		</ol>
+		  </div>
+		  <div class="col-md-3">
+			<h4>Заработали больше всех</h4>
+			<ol>
+			<li>crazybuck - ?</li>
+			<li>KRMZ - 11686630</li>
+			<li>Serj99 - 6756044</li>
+		</ol>
+		  </div>
+		  <div class="col-md-3">
+			<h4>Потратили больше всех</h4>
+			<ol>
+			<li>Darksiski - 27531522</li>
+			<li>human404 - 3507291</li>
+			<li>EmeraldRU - 1571547</li>
+			
+
+		</ol>
+		  </div>
+	    </div>
+	  </div>
+	</div>
+<br>
+<p>
+
+
+
+<div class="row">
+  <div class="col-md-3">
+  	<div id="Kills"></div>
+	<script>
+	var pie = new d3pie("Kills", {
+	"header": {
+		"title": {
+			"fontSize": 24,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"color": "#999999",
+			"fontSize": 12,
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasHeight": 200,
+		"canvasWidth": 250,
+		"pieOuterRadius": "40%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "crazybuck",
+				"value": 210,
+				"color": "#2383c1"
+			},
+			{
+				"label": "Darksiski",
+				"value": 75,
+				"color": "#64a61f"
+			},
+			{
+				"label": "Serj99",
+				"value": 49,
+				"color": "#7b6788"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"format": "label-value2",
+			"pieDistance": 6
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"tooltips": {
+		"enabled": true,
+		"type": "placeholder",
+		"string": "{label}: {value}, {percentage}%"
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+}	);
+</script>
+	</div>
+  <div class="col-md-3">
+
+<div id="Deaths"></div>
+<script>
+var pie = new d3pie("Deaths", {
+	"header": {
+		"title": {
+			"fontSize": 24,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"color": "#999999",
+			"fontSize": 12,
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasHeight": 200,
+		"canvasWidth": 250,
+		"pieOuterRadius": "40%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "crazybuck",
+				"value": 69,
+				"color": "#2383c1"
+			},
+			{
+				"label": "Serj99",
+				"value": 36,
+				"color": "#64a61f"
+			},
+			{
+				"label": "Darksiski",
+				"value": 35,
+				"color": "#7b6788"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"format": "label-value2",
+			"pieDistance": 6
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"tooltips": {
+		"enabled": true,
+		"type": "placeholder",
+		"string": "{label}: {value}, {percentage}%"
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+</script>
+
+  </div>
+  <div class="col-md-3">
+
+<div id="Earnings"></div>
+<script>
+var pie = new d3pie("Earnings", {
+	"header": {
+		"title": {
+			"fontSize": 24,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"color": "#999999",
+			"fontSize": 12,
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasHeight": 200,
+		"canvasWidth": 250,
+		"pieOuterRadius": "40%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "crazybuck",
+				"value": 20000000,
+				"color": "#2383c1"
+			},
+			{
+				"label": "KRMZ",
+				"value": 11686630,
+				"color": "#64a61f"
+			},
+			{
+				"label": "Serj99",
+				"value": 6756044,
+				"color": "#7b6788"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"format": "label-value2",
+			"pieDistance": 6
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"tooltips": {
+		"enabled": true,
+		"type": "placeholder",
+		"string": "{label}: {value}, {percentage}%"
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+</script>
+
+  </div>
+  <div class="col-md-3">
+
+<div id="Spendings"></div>
+<script>
+var pie = new d3pie("Spendings", {
+	"header": {
+		"title": {
+			"fontSize": 24,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"color": "#999999",
+			"fontSize": 12,
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasHeight": 200,
+		"canvasWidth": 250,
+		"pieOuterRadius": "40%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "Darksiski",
+				"value": 27531522,
+				"color": "#2383c1"
+			},
+			{
+				"label": "human404",
+				"value": 3507291,
+				"color": "#64a61f"
+			},
+			{
+				"label": "EmeraldRU",
+				"value": 1571547,
+				"color": "#7b6788"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"format": "label-value2",
+			"pieDistance": 6
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"tooltips": {
+		"enabled": true,
+		"type": "placeholder",
+		"string": "{label}: {value}, {percentage}%"
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+</script>
+
+  </div>
+</div>
+
+
 
 </body>
 </html>
