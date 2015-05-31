@@ -4,7 +4,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
-from forms import RegisterForm, LoginForm
+from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
 
 
@@ -114,20 +114,21 @@ def teamspeak():
 @app.route('/stat_submit/', methods = ['GET', 'POST'])
 @login_required
 def stat_submit():
-    '''
-    form = BaseStatsForm(request.form)
+    import datetime
+    error = None
+    form = AddStataForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            form.stats.data = req_basestats
+            new_stata = Stata(
+                form.body.data,
+                datetime.datetime.utcnow(),
+                session['user_id']
+            )
+            db.session.add(new_stata)
+            db.session.commit()
 
-    if request.method == 'GET':
-        return render_template('stat_submit.html', form = form)
-    '''
-    return render_template('stat_submit.html')
+    return render_template('stat_submit.html', form = form)
 
-
-
-    # return render_template('stat_submit.html')
 
 @app.route('/progress/')
 @login_required

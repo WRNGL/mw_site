@@ -5,44 +5,17 @@
 
 <br>
 <h3>Статистику	 вставлять сюда:</h3>
-    <form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "base_stats" placeholder="Можете ничего не копировать, оно один хуй не работает и неизвестно когда заработает" rows="5" cols="70"></textarea>
-    	<br>
+    <form class="form-signin" role="form" method="post" action="/">
+        {{ form.statbody(placeholder="name") }}
+
+
+    	<!--
+        <textarea name = "base_stats" placeholder="Можете ничего не копировать, оно один хуй не работает и неизвестно когда заработает" rows="5" cols="70"></textarea>
+    	-->
+        <br>
     	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
     </form>
 
 <br>
-<br>
-<br>
-<h3>Пробное разделение полей</h3>
-<form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "kills" placeholder="Киллы" rows="1" cols="10"></textarea>
-    	<br>
-    	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
-    </form>
-<br>
-<form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "deaths" placeholder="Смерти" rows="1" cols="10"></textarea>
-    	<br>
-    	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
-    </form>
-<br>
- <form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "wins" placeholder="Победы" rows="1" cols="10"></textarea>
-    	<br>
-    	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
-    </form>
-<br>
-<form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "lose" placeholder="Поражения" rows="1" cols="10"></textarea>
-    	<br>
-    	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
-    </form>
-<br>
-<form class="form-signin" role="form" method="post" action="">
-    	<textarea name = "cbills" placeholder="Золото" rows="1" cols="10"></textarea>
-    	<br>
-    	<button class="btn btn-sm btn-success" type="submit">Заслать</button>
-    </form>
 
 {% endblock %}

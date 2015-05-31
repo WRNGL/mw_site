@@ -34,7 +34,9 @@ class LoginForm(Form):
 		validators = [DataRequired(),
 		Length(max = 40)])
 
-class BaseStatsForm(Form):
-	stats = TextField(
-		'BaseStats',
-		validators = [DataRequired()])
+class AddStataForm(Form):
+	statbody = TextField(
+		'Stata here',
+		validators=[DataRequired(),
+		Length(min = 3, max = 140)]
+		)
