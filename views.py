@@ -6,13 +6,14 @@ from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
+import datetime
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
-from models import User
+from models import User, Stata
 
 
 
@@ -97,6 +98,30 @@ def register():
         return render_template('register.html', form = form)
 
 
+# stata enter
+@app.route('/stat_submit/', methods = ['GET', 'POST'])
+@login_required
+def stat_submit():
+    form = AddStataForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_stata = Stata(
+                form.body.data,
+                datetime.datetime.utcnow(),
+                session['user_id']
+                )
+            db.session.add(new_stata)
+            db.session.commit()
+            flash('ZAYEBESS')
+            return redirect(url_for('statistics'))
+        else:
+            flash('PIZDETS')
+            return redirect(url_for('stat_submit'))
+    return render_template('stat_submit.html', form = form)
+
+
+
+
 # main - empty for now
 @app.route('/main')
 @login_required
@@ -110,24 +135,6 @@ def main():
 def teamspeak():
     return render_template('teamspeak.html')
 
-# stata enter
-@app.route('/stat_submit/', methods = ['GET', 'POST'])
-@login_required
-def stat_submit():
-    import datetime
-    error = None
-    form = AddStataForm(request.form)
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            new_stata = Stata(
-                form.body.data,
-                datetime.datetime.utcnow(),
-                session['user_id']
-            )
-            db.session.add(new_stata)
-            db.session.commit()
-
-    return render_template('stat_submit.html', form = form)
 
 
 @app.route('/progress/')

@@ -23,8 +23,13 @@ class User(db.Model):
 class Stata(db.Model):
 	stata_id = db.Column(db.Integer, primary_key = True)
 	body = db.Column(db.String(140))
-	timestamp = db.Column(db.DateTime)
+	timestamp = db.Column(db.Date, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+	def __init__(self, body, timestamp, user_id):
+		self.body = body
+		self.timestamp = timestamp
+		self.user_id = user_id
 
 	def __repr__(self):
 		return '<Post %r>' % (self.body)

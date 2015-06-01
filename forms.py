@@ -35,7 +35,7 @@ class LoginForm(Form):
 		Length(max = 40)])
 
 class AddStataForm(Form):
-	statbody = TextField(
+	body = TextField(
 		'Stata here',
 		validators=[DataRequired(),
 		Length(min = 3, max = 140)]
