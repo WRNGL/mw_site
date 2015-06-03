@@ -15,8 +15,6 @@ db = SQLAlchemy(app)
 
 from models import User, Stata
 
-
-
 def login_required(test):
 	@wraps(test)
 	def wrap(*args, **kwargs):
@@ -105,8 +103,11 @@ def stat_submit():
     form = AddStataForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
+            x = "what the ffff"
+            # parse form.body.data here
             new_stata = Stata(
-                form.body.data,
+                x,
+                #form.body.data,
                 datetime.datetime.utcnow(),
                 session['user_id']
                 )

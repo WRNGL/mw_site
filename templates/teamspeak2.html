@@ -1,88 +1,240 @@
-
-<script type="text/javascript"
-src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Welcome to Alpha Legion Covert Ops</title>
+    <!-- styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+	<script type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- Подключаем JQuery -->
+	<script type="text/javascript">
 $(document).ready(function(){
  $('.spoiler_links').click(function(){
-  $(this).parent().children('div.spoiler_body').toggle('normal');
+  $(this).next('.spoiler_body').slideToggle('normal');<!-- Плавное открытие и закрытие -->
   return false;
  });
 });
 </script>
-
-{% extends "template.html" %}
-{% block content %}
-
-<head>
+<script type="text/javascript">
+$(document).ready(function(){
+ $('.spoiler_links2').click(function(){
+  $(this).next('.spoiler_body2').slideToggle('normal');<!-- Плавное открытие и закрытие списка НАШЕГО ТС -->
+  return false;
+ });
+});
+</script>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/main">Main</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              <li><a href="/statistics">Statistics</a></li>
+              <li><a href="/teamspeak">Teamspeaks</a></li>
+              <li><a href="http://www.alpha-legion.pro">Forums</a></li>
+              <li><a href="/stat_submit">Submit Data</a></li>
+              <li><a href="/progress">Progress</a></li>
+              <li><a href="/logout">Logout</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+      <div class="content">
+<br>
+<br>
+</style>
+<style type="text/css">
+ .spoiler_body { display:none; font-style:italic; }
+ .spoiler_links { cursor:pointer; font-weight:bold; text-decoration:underline; }<!-- Скрывает все спойлеры по умолчанию, делает их похожими на ссылки -->
+ .blue { color:#000099; }
+ .green { color:#009900; }
+ </style>
+ <style type="text/css">
+ .spoiler_body2 { display:none; font-style:italic; }
+ .spoiler_links2 { cursor:pointer; font-weight:bold; text-decoration:underline; }<!-- Наш ТС всегда видно но можно его свернуть \ развернуть -->
+ .blue { color:#000099; }
+ .green { color:#009900; }
+</style>
 <title>Alpha Legion Covert Ops</title>
 </head>
-
-
-<body>
-
-<center><h3>Новый список ТС (WIP)</h3></center>
-
 <div class="container">
-<div class="row">
-<div class="col-md-3">
-<li><style type="text/css">
- .spoiler_body {display:none;}
- .spoiler_links {cursor:pointer;}
-</style>
-
-<div>
- <a href="" class="spoiler_links">Alpha Legion</a>
- <div class="spoiler_body">
+<!-- <h3><a href="http://www.alpha-legion.pro/">Alpha Legion forums<a></h3> -->
+<center>
+<h2>Welcome to Alpha Legion Teamspeak Page</h2>
+There you can see who is online in our TS and who is online in several other units
+<h1>Our Teamspeak</h1>
+<a href="" class="spoiler_links2">Show/Hide</a><!-- Cпойлер нашего ТС -->
+<div class="spoiler_body2">
 <div id="ts3viewer_1051659" style="width:280px; background-color:;"> </div>
-
 <script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
-
 <script type="text/javascript">
 <!--
 var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1051659&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
 ts3v_display.init(ts3v_url_1, 1051659, 100);
 -->
-</script></div></li>
-
-</div>
-<div class="col-md-3">
-<li><style type="text/css">
- .spoiler_body {display:none;}
- .spoiler_links {cursor:pointer;}
-</style>
-
-<div>
- <a href="" class="spoiler_links">someoneelse</a>
- <div class="spoiler_body">
-<div id="ts3viewer_1051659" style="width:280px; background-color:;"> </div>
-
+</script></div>
+<center><h1>Other Units Teamspeaks</h1>
+Click on links to view TS data or use the buttons below
+<br>
+<input type="button" value="Open spoilers" onclick=$('.spoiler_body').show('normal')>
+<input type="button" value="Close spoilers" onclick=$('.spoiler_body').hide('normal')>
+<!-- Кнопка открыть \ закрыть все -->
+<br>
+<style>
+   table {
+    table-layout: fixed; /* Фиксированная ширина ячеек */
+    width: 100%; /* Ширина таблицы */
+   }
+   .col1 { width: 160px; }
+   .coln { width: 60px; }
+  </style>
+<table height="0px" width="100%" cellspacing="0" cellpadding="4" border="0">
+<tr>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Black Spikes</a><!-- Cпойлер -->
+<div class="spoiler_body">
+<div id="ts3viewer_1023549" style="width:280px; background-color:;"> </div>
 <script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
-
 <script type="text/javascript">
 <!--
-var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1051659&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
-ts3v_display.init(ts3v_url_1, 1051659, 100);
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1023549&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1023549, 100);
 -->
-</script></div></li>
-</div>
-<div class="col-md-3">
-<h3>Top jew</h3>
-<li>crazybuck</li>
-<li>drunkblackstar</li>
-<li>HaMaT</li>
-</div>
-<div class="col-md-3">
-<h3>Top jew</h3>
-<li>crazybuck</li>
-<li>drunkblackstar</li>
-<li>HaMaT</li>
-</div>
-</div>
-</div>
-
-
+</script>
+</div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Falcon Guards</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1035067" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1035067&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1035067, 100);
+-->
+</script>
+</div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">The Librarians</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1050384" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1050384&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1050384, 100);
+-->
+</script>
+</div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">TCAF</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1049433" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1049433&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1049433, 100);
+-->
+</script>
+</div></td></tr>
+<tr>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Russian Death Legion</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1016968" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1016968&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1016968, 100);
+-->
+</script>
+</div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">12th Donegal Guards</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1057732" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1057732&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1057732, 100);
+-->
+</script>
+</div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Phoenix Legion</a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1054654" style="width:280px; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1054654&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1054654, 100);
+-->
+</script>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Varangian Guard of FRR </a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1017039" style="width:; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1017039&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1017039, 100);
+-->
+</script>
+</div></td></tr>
+<tr>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">HPG-1 Russian Jade Falcon </a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1014338" style="width:; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1014338&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1014338, 100);
+-->
+</script></div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Old Fanged Farts </a>
+ <div class="spoiler_body">
+ <div id="ts3viewer_1029478" style="width:; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1029478&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1029478, 100);
+-->
+</script></div></td>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">Russian Clan Wolf </a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1016597" style="width:; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1016597&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1016597, 100);
+-->
+</script></td></div>
+<td style="height=300px; vertical-align:top"><a href="" class="spoiler_links">362nd Assault Cluster </a>
+ <div class="spoiler_body">
+<div id="ts3viewer_1053052" style="width:; background-color:;"> </div>
+<script type="text/javascript" src="http://static.tsviewer.com/short_expire/js/ts3viewer_loader.js"></script>
+<script type="text/javascript">
+<!--
+var ts3v_url_1 = "http://www.tsviewer.com/ts3viewer.php?ID=1053052&text=000000&text_size=12&text_family=1&js=1&text_s_weight=bold&text_s_style=normal&text_s_variant=normal&text_s_decoration=none&text_s_color_h=525284&text_s_weight_h=bold&text_s_style_h=normal&text_s_variant_h=normal&text_s_decoration_h=underline&text_i_weight=normal&text_i_style=normal&text_i_variant=normal&text_i_decoration=none&text_i_color_h=525284&text_i_weight_h=normal&text_i_style_h=normal&text_i_variant_h=normal&text_i_decoration_h=underline&text_c_weight=normal&text_c_style=normal&text_c_variant=normal&text_c_decoration=none&text_c_color_h=525284&text_c_weight_h=normal&text_c_style_h=normal&text_c_variant_h=normal&text_c_decoration_h=underline&text_u_weight=bold&text_u_style=normal&text_u_variant=normal&text_u_decoration=none&text_u_color_h=525284&text_u_weight_h=bold&text_u_style_h=normal&text_u_variant_h=normal&text_u_decoration_h=none";
+ts3v_display.init(ts3v_url_1, 1053052, 100);
+-->
+</script></td></div>
+</table>
+</center></center>	
 </body>
-</div>
-
-{% endblock %}
