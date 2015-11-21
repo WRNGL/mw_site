@@ -23,22 +23,12 @@ class User(db.Model):
 class Stata(db.Model):
 	__tablename__ = 'stata'
 	stata_id = db.Column(db.Integer, primary_key = True)
-	kills = db.Column(db.String(8))
-	deaths = db.Column(db.String(8))
-	cbills = db.Column(db.String(10))
-	exp_points = db.Column(db.String(20))
-	wins = db.Column(db.String(8))
-	losses = db.Column(db.String(8))
+	body = db.Column(db.String(140))
 	timestamp = db.Column(db.Date, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-	def __init__(self, kills, deaths, cbills, exp_points, wins, losses, timestamp, user_id):
-		self.kills = kills
-		self.deaths = deaths
-		self.cbills = cbills
-		self.exp_points = exp_points
-		self.wins = wins
-		self.losses = losses
+	def __init__(self, body, timestamp, user_id):
+		self.body = body
 		self.timestamp = timestamp
 		self.user_id = user_id
 

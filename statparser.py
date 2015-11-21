@@ -2,28 +2,40 @@ import requests, urllib2, re, sqlite3, getpass
 from urllib import urlopen
 from datetime import datetime, date
 
-def Killz(shit):
-	start_tag = '<tbody>'
-	end_tag = 'Death Ratio'
-	start_index = shit.find(start_tag)
-	end_index = shit.find(end_tag)
-	text_raw = shit[start_index:end_index].replace(',','')
-	stat_list =  re.findall(r'\d+', text_raw)
-	return stat_list[1]
-
-# def GetMechStats():
-
-# def GetMapStats():
+def Statz(stat_data):
+	if '<html>' in stat_data:
+		start_tag = '<tbody>'
+		end_tag = 'Death Ratio'
+		start_index = stat_data.find(start_tag)
+		end_index = stat_data.find(end_tag)
+		text_raw = stat_data[start_index:end_index].replace(',','')
+		stat_list =  re.findall(r'\d+', text_raw)
+		return stat_list
+	else:
+		start_tag = 'MechWarrior Credits'
+		end_tag = 'HOME'
+		start_index = stat_data.find(start_tag)
+		end_index = stat_data.find(end_tag)
+		text_raw = stat_data[start_index:end_index].replace(',','')
+		stat_list =  re.findall(r'\d+', text_raw)
+		return stat_list
 
 '''
-mah_list = GetBaseStats()
-player = GetName()
-mc = mah_list[0]
-kill = mah_list[1]
-death = mah_list[2]
-cbills = mah_list[3]
-exp = mah_list[4]
-win = mah_list[5]
-lose = mah_list[6]
-tiem = datetime.now()
+	start_tag = '<tbody>'
+	end_tag = 'Death Ratio'
+	start_index = stat_data.find(start_tag)
+	end_index = stat_data.find(end_tag)
+	text_raw = stat_data[start_index:end_index].replace(',','')
+	stat_list =  re.findall(r'\d+', text_raw)
+	return stat_list
+
+# not used
+def TextStatz(text_data):
+	start_tag = 'MechWarrior Credits'
+	end_tag = 'HOME'
+	start_index = req_basestats.find(start_tag)
+	end_index = req_basestats.find(end_tag)
+	text_raw = req_basestats[start_index:end_index].replace(',','')
+	stat_list =  re.findall(r'\d+', text_raw)
+	return stat_list
 '''

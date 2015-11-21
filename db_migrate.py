@@ -19,4 +19,4 @@ with sqlite3.connect(DATABASE_PATH) as connection:
 	c.execute(""" SELECT body, timestamp, user_id FROM old_stata  ORDER BY stata_id ASC """)
 
 	# save all rows as a list of tuples; set date to nowand user id to 1
-	data = #TBD
+	data = [(row[0], row[1], row[2])  ]
