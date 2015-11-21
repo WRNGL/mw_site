@@ -21,6 +21,7 @@ class User(db.Model):
 		return '<User %r>' % (self.name)
 
 class Stata(db.Model):
+	__tablename__ = 'stata'
 	stata_id = db.Column(db.Integer, primary_key = True)
 	body = db.Column(db.String(140))
 	timestamp = db.Column(db.Date, default=datetime.datetime.utcnow())

@@ -6,7 +6,8 @@ from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
-import datetime
+from statparser import Killz
+import datetime, requests
 
 
 app = Flask(__name__)
@@ -103,17 +104,16 @@ def stat_submit():
     form = AddStataForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            x = "what the ffff"
-            # parse form.body.data here
+            shit = form.body.data
+            noidea = Killz(shit)
             new_stata = Stata(
-                x,
-                #form.body.data,
+                noidea,
                 datetime.datetime.utcnow(),
                 session['user_id']
                 )
             db.session.add(new_stata)
             db.session.commit()
-            flash('ZAYEBESS')
+            flash('Stats added successfully')
             return redirect(url_for('statistics'))
         else:
             flash('PIZDETS')

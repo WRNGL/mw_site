@@ -19,7 +19,7 @@ class RegisterForm(Form):
 	password = PasswordField(
 		'Password',
 		validators = [DataRequired(),
-		Length(min = 5, max = 40)])
+		Length(min = 3, max = 20)])
 	confirm = PasswordField(
 		'Repeat Password',
 		validators = [DataRequired(), EqualTo('password')]
@@ -38,5 +38,5 @@ class AddStataForm(Form):
 	body = TextField(
 		'Stata here',
 		validators=[DataRequired(),
-		Length(min = 3, max = 140)]
+		Length(min = 3, max = 140000)]
 		)

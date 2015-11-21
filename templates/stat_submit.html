@@ -4,7 +4,7 @@
 Сюда нужно скопировать вашу статистику из профиля с офсайта. Подробная инструкция с картинками будет позже. 
 
 <br>
-<h3>Статистику	 вставлять сюда:</h3>
+<h3>Распарсить html-код:</h3>
     <form action="{{ url_for('stat_submit') }}" method="post">
       {{ form.csrf_token }}
       <p>
@@ -12,7 +12,17 @@
       </p>
       <p><input type="submit" value="Submit"></p>
     </form>
-
+<p>
+<p>
+<h3>Распарсить выделенный текст (не работает):</h3>
+    <form action="{{ url_for('stat_submit') }}" method="post">
+      {{ form.csrf_token }}
+      <p>
+          {{ form.body.label }}: {{ form.body }}<br>
+      </p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+<p>
 <br>
 
 {% endblock %}
