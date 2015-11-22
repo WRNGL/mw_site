@@ -2,8 +2,7 @@
 
 
 from views import db
-from models import User
-from models import Stata
+from models import User, Stata
 from datetime import date
 
 # create the database and the db table

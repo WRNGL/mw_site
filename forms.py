@@ -40,10 +40,3 @@ class AddStataForm(Form):
 		validators=[DataRequired(),
 		Length(min = 300, max = 15000)]
 		)
-
-class AddTextStataForm(Form):
-	body = TextField(
-		'text stata here',
-		validators=[DataRequired(),
-		Length(min = 1200, max = 1800)]
-		)
