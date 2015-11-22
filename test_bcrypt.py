@@ -3,7 +3,7 @@
 import os
 import unittest
 
-from views import app, db
+from views import app, db, bcrypt
 from config import basedir
 from models import User
     
@@ -17,6 +17,18 @@ class AllTests(unittest.TestCase):
 
     def login(self, name, password):
         return self.app.post('/', data = dict(name = name, password = password), follow_redirects = True)
+
+
+
+
+    def create_user(self):
+        new_user = User(
+        name='dnar',
+        email='dnar@dno.ru',
+        password=bcrypt.generate_password_hash('1234')
+        )
+        db.session.add(new_user)
+        db.session.commit()
     #                                                                                                                                           #
     #############################################################################################################################################
 
@@ -29,22 +41,6 @@ class AllTests(unittest.TestCase):
         
         self.app = app.test_client()
         db.create_all()
-
-    # register test
-    def test_user_can_register(self):
-        new_user = User("dno", "dno@dno.ru", "password")
-        db.session.add(new_user)
-        db.session.commit()
-        test = db.session.query(User).all()
-        for t in test:
-            t.name
-        assert t.name == 'dno'
-
-    # test login form is present
-    def test_form_is_present_on_login_page(self):
-        response = self.app.get('/')
-        self.assertEquals(response.status_code, 200)
-        self.assertIn('Please sign in to access Covert Ops Facility', response.data)
 
     # login test
     def test_user_can_login(self):

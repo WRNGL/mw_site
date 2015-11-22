@@ -9,7 +9,6 @@ from sqlalchemy.exc import IntegrityError
 from statparser import Statz
 import datetime, requests
 
-
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
@@ -32,14 +31,33 @@ def flash_errors(form):
             flash(u"Error in the %s field - %s" % (
                 getattr(form, field).label.text, error), 'error')
 
-# Log Out
-@app.route('/logout/')
-def logout():
-	session.pop('logged_in', None)
-	flash('You are successfully logged out')
-	return redirect(url_for('login'))
 
+# User Registration:
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    error = None
+    form = RegisterForm(request.form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_user = User(
+                form.name.data,
+                form.email.data,
+                form.password.data
+            )
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                flash('Thank you for registering. You may log in.')
+                return redirect(url_for('login'))
+            except IntegrityError:
+                error = 'This username or email already exist. Please try another one.'
+                return render_template('register.html', form = form, error = error)
+        else:
+            return render_template('register.html', form = form, error = error)
+    if request.method == 'GET':
+        return render_template('register.html', form = form)
 
+# User login:
 @app.route('/', methods=['GET', 'POST'])
 def login():
     error = None
@@ -61,7 +79,7 @@ def login():
                 session['logged_in'] = True
                 session['user_id'] = u.id
                 flash('Successfully logged in.')
-                return redirect(url_for('main'))
+                return redirect(url_for('main'))    
         else:
             return render_template(
                 "login.html",
@@ -71,30 +89,13 @@ def login():
     if request.method == 'GET':
         return render_template('login.html', form=form)
 
-# User Registration:
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
-    error = None
-    form = RegisterForm(request.form)
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            new_user = User(
-                form.name.data,
-                form.email.data,
-                form.password.data,
-            )
-            try:
-                db.session.add(new_user)
-                db.session.commit()
-                flash('Thank you for registering. You may log in.')
-                return redirect(url_for('login'))
-            except IntegrityError:
-                error = 'This username or email already exist. Please try another one.'
-                return render_template('register.html', form = form, error = error)
-        else:
-            return render_template('register.html', form = form, error = error)
-    if request.method == 'GET':
-        return render_template('register.html', form = form)
+# Log Out
+@app.route('/logout/')
+def logout():
+    session.pop('logged_in', None)
+    flash('You are successfully logged out')
+    return redirect(url_for('login'))
+
 
 
 # stata enter
