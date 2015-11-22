@@ -3,6 +3,7 @@ import datetime
 from views import db
 
 
+
 class User(db.Model):
 	__tablename__ = 'users'
 	__table_args__ = {'sqlite_autoincrement': True}
@@ -23,6 +24,7 @@ class User(db.Model):
 class Stata(db.Model):
 	__tablename__ = 'stata'
 	stata_id = db.Column(db.Integer, primary_key = True)
+	mc = db.Column(db.String(8))
 	kills = db.Column(db.String(8))
 	deaths = db.Column(db.String(8))
 	cbills = db.Column(db.String(10))
@@ -32,7 +34,8 @@ class Stata(db.Model):
 	timestamp = db.Column(db.Date, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-	def __init__(self, kills, deaths, cbills, exp_points, wins, losses, timestamp, user_id):
+	def __init__(self, mc, kills, deaths, cbills, exp_points, wins, losses, timestamp, user_id):
+		self.mc = mc
 		self.kills = kills
 		self.deaths = deaths
 		self.cbills = cbills

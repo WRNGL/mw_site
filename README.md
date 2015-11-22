@@ -1,8 +1,5 @@
-# Stat tracking #
+## Stat tracking ##
 
-## To-do: ##
-
-* pwd hashing
-* username on page
-* add mc parsing
-* ...
+### To-do: ###
+* continue with stat displaying
+* rework tail parsing of plaintext

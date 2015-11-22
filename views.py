@@ -8,12 +8,18 @@ from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
 from statparser import Statz
 import datetime, requests
+from flask.ext.bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config.from_object('config')
+bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 
 from models import User, Stata
+
+##########################
+#### helper functions ####
+##########################
 
 def login_required(test):
 	@wraps(test)
@@ -31,6 +37,10 @@ def flash_errors(form):
             flash(u"Error in the %s field - %s" % (
                 getattr(form, field).label.text, error), 'error')
 
+def statistics_on_page():
+    return db.session.query(Stata).filter_by(user_id='1').order_by(Stata.stata_id.asc())
+
+
 
 # User Registration:
 @app.route('/register/', methods=['GET', 'POST'])
@@ -42,7 +52,7 @@ def register():
             new_user = User(
                 form.name.data,
                 form.email.data,
-                form.password.data
+                bcrypt.generate_password_hash(form.password.data)
             )
             try:
                 db.session.add(new_user)
@@ -64,31 +74,16 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            u = User.query.filter_by(
-                name=request.form['name'],
-                password=request.form['password']
-            ).first()
-            if u is None:
-                error = 'Invalid username or password.'
-                return render_template(
-                    "login.html",
-                    form=form,
-                    error=error
-                )
-            else:
+            u = User.query.filter_by(name=request.form['name']).first()
+            if u is not None and bcrypt.check_password_hash(u.password, request.form['password']):
                 session['logged_in'] = True
                 session['user_id'] = u.id
+                session['name'] = u.name
                 flash('Successfully logged in.')
-                return redirect(url_for('main'))    
-        else:
-            return render_template(
-                "login.html",
-                form=form,
-                error=error
-            )
-    if request.method == 'GET':
-        return render_template('login.html', form=form)
-
+                return redirect(url_for('main'))
+            else:
+                error = 'Invalid username or password.'   
+    return render_template('login.html', form=form, error=error)
 # Log Out
 @app.route('/logout/')
 def logout():
@@ -106,6 +101,7 @@ def stat_submit():
     if request.method == 'POST':
         if form.validate_on_submit():
             stat_data = form.body.data
+            mc = Statz(stat_data)[0]
             kills = Statz(stat_data)[1]
             deaths = Statz(stat_data)[2]
             cbills = Statz(stat_data)[3]
@@ -113,6 +109,7 @@ def stat_submit():
             wins = Statz(stat_data)[5]
             losses = Statz(stat_data)[6]
             new_stata = Stata(
+                mc,
                 kills,
                 deaths,
                 cbills,
@@ -131,6 +128,17 @@ def stat_submit():
             return redirect(url_for('stat_submit'))
     return render_template('stat_submit.html', form = form)
 
+
+
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template(
+        'profile.html',
+        username = session['name'],
+        stat_on_page = statistics_on_page()
+        )
 
 
 

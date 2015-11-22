@@ -7,10 +7,10 @@ import os
 basedir = os.path.dirname(os.path.abspath(__file__))
 
 
-DATABASE = 'flasktaskr.db'
+DATABASE = 'mwstats.db'
 
 WTF_CSRF_ENABLED = True
-SECRET_KEY = 'secret'
+SECRET_KEY = 'secret_is_secret'
 
 # defines full path to database
 DATABASE_PATH = os.path.join(basedir, DATABASE)
