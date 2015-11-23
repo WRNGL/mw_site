@@ -8,19 +8,66 @@
 Это ваш профиль.
 <br>
 Скоро здесь будет ваша персональная статистика.
+<br><br>
+Что-то вроде этого (текущие значения из базы):
 <br>
-Например:
+<br>
+
 {% for stat in stat_on_page %}
-<p>
-  Киллы: {{ stat.kills }}<br>
-  Смерти: {{ stat.deaths }}<br>
-  Победы: {{ stat.wins }}<br>
-  Поражения: {{ stat.losses }}<br>
-  Деньги: {{ stat.cbills }}<br>
-</p>
+<div style="margin: 0px 15px 15px 15px;">
+							
+							<table class="table table-striped">
+							
+								<thead>
+								
+									<tr>
+									
+										<th width="50%">Поле</th>
+										<th width="50%">Значение</th>
+									
+									</tr>
+								
+								</thead>
+								
+								<tbody>
+								
+									<tr>
+										<td>MC</td>
+										<td>326</td>
+									</tr>
+									
+									<tr>
+										<td>Фраги</td>
+										<td>{{ stat.kills }}</td>
+									</tr>
+
+									<tr>
+										<td>Смерти</td>
+										<td>{{ stat.deaths }}</td>
+									</tr>
+									
+									
+									<tr>
+										<td>Победы</td>
+										<td>{{ stat.wins }}</td>
+									</tr>
+									<tr>
+										<td>Поражения</td>
+										<td>{{ stat.losses }}</td>
+									</tr>
+									<tr>
+										<td>C-Bills</td>
+										<td>{{ stat.cbills }}</td>
+									</tr>
+
+
+								</tbody>
+							
+							</table>
+
+						</div>
 {% endfor %}
-<br>
-<br>
+
 <br>
 <br>
 Хотите заслать данные? 

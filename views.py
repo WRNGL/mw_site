@@ -39,6 +39,8 @@ def flash_errors(form):
 
 def statistics_on_page():
     return db.session.query(Stata).filter_by(user_id='1').order_by(Stata.stata_id.asc())
+    # SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
+
 
 
 
