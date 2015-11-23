@@ -6,8 +6,7 @@ from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
-#from sqlalchemy import _and
-from sqlalchemy.sql import func
+from sqlalchemy.sql import text
 from statparser import Statz
 import datetime, requests
 from flask.ext.bcrypt import Bcrypt
@@ -41,15 +40,20 @@ def flash_errors(form):
 
 def statistics_on_page():
     user_id = session['user_id']
-    #stata_id = session['stata_id']
-    return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.asc())
-    #return db.session.query(Stata).filter(user_id=user_id, ).order_by(func.max(Stata.stata_id))
+    return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
+
+def sum_of_kills():   
+    return #db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
+    # sum of value = SELECT sum(kills) FROM stata t1 WHERE stata_id = (SELECT max(stata_id) FROM stata WHERE t1.user_id = stata.user_id) ORDER BY stata_id DESC
+    # return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.asc())
+
+    # latest record = select kills from stata order by stata_id desc limit 1
+
+    #return db.session.query(Stata).filter(user_id=user_id, stata_id).order_by(func.max(Stata.stata_id))
 
     #return db.session.query(Stata).filter(user_id, func.max(stat_id))  
     #   SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
     #   return db.session.query(Stata).filter_by(user_id='1', stata_id=func.max(Stata.stata_id))  
-    #
-    #  func.max(Stata.stata_id)
 
 
 
@@ -79,6 +83,7 @@ def register():
     if request.method == 'GET':
         return render_template('register.html', form = form)
 
+
 # User login:
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -102,7 +107,6 @@ def logout():
     session.pop('logged_in', None)
     flash('You are successfully logged out')
     return redirect(url_for('login'))
-
 
 
 # stata enter
@@ -141,8 +145,6 @@ def stat_submit():
     return render_template('stat_submit.html', form = form, username = session['name'])
 
 
-
-
 @app.route('/profile')
 @login_required
 def profile():
@@ -170,7 +172,6 @@ def teamspeak():
         username = session['name'])
 
 
-
 @app.route('/progress/')
 @login_required
 def progress():
@@ -182,7 +183,9 @@ def progress():
 @login_required
 def statistics():
     return render_template('statistics.html',
-        username = session['name'])
+        username = session['name'],
+        sum_kills = sum_of_kills()
+        )
 
 
 @app.route('/teamspeak2')
