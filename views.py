@@ -6,6 +6,8 @@ from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
+#from sqlalchemy import _and
+from sqlalchemy.sql import func
 from statparser import Statz
 import datetime, requests
 from flask.ext.bcrypt import Bcrypt
@@ -38,8 +40,16 @@ def flash_errors(form):
                 getattr(form, field).label.text, error), 'error')
 
 def statistics_on_page():
-    return db.session.query(Stata).filter_by(user_id='1').order_by(Stata.stata_id.asc())
-    # SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
+    user_id = session['user_id']
+    #stata_id = session['stata_id']
+    return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.asc())
+    #return db.session.query(Stata).filter(user_id=user_id, ).order_by(func.max(Stata.stata_id))
+
+    #return db.session.query(Stata).filter(user_id, func.max(stat_id))  
+    #   SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
+    #   return db.session.query(Stata).filter_by(user_id='1', stata_id=func.max(Stata.stata_id))  
+    #
+    #  func.max(Stata.stata_id)
 
 
 
@@ -128,7 +138,7 @@ def stat_submit():
         else:
             flash('Validation failed')
             return redirect(url_for('stat_submit'))
-    return render_template('stat_submit.html', form = form)
+    return render_template('stat_submit.html', form = form, username = session['name'])
 
 
 
@@ -148,30 +158,35 @@ def profile():
 @app.route('/main')
 @login_required
 def main():
-    return render_template('main.html')
+    return render_template('main.html',
+        username = session['name'])
 
 
 # teamspeak viewer
 @app.route('/teamspeak/')
 @login_required
 def teamspeak():
-    return render_template('teamspeak.html')
+    return render_template('teamspeak.html',
+        username = session['name'])
 
 
 
 @app.route('/progress/')
 @login_required
 def progress():
-    return render_template('progress.html')
+    return render_template('progress.html',
+        username = session['name'])
 
 
 @app.route('/statistics')
 @login_required
 def statistics():
-    return render_template('statistics.html')
+    return render_template('statistics.html',
+        username = session['name'])
 
 
 @app.route('/teamspeak2')
 @login_required
 def teamspeak2():
-    return render_template('teamspeak2.html')
+    return render_template('teamspeak2.html',
+        username = session['name'])
