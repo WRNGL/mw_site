@@ -2,7 +2,7 @@
 {% block content %}
 
 Профиль <h4>
-{% if session.logged_in %} {{username}}{% endif %}
+{% if session.logged_in %} {{username}} {% endif %}
 </h4>
 <br>
 Это ваш профиль.
@@ -13,7 +13,7 @@
 <br>
 <br>
 
-{% for stat in stat_on_page %}
+{% for stat in profile_stat %}
 <div style="margin: 0px 15px 15px 15px;">						
 	<table class="table table-striped">
 		<thead>

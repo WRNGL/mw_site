@@ -6,7 +6,7 @@ from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.sql import text
+from sqlalchemy.sql import text, select, func
 from statparser import Statz
 import datetime, requests
 from flask.ext.bcrypt import Bcrypt
@@ -38,13 +38,17 @@ def flash_errors(form):
             flash(u"Error in the %s field - %s" % (
                 getattr(form, field).label.text, error), 'error')
 
-def statistics_on_page():
+def profile_stat():
     user_id = session['user_id']
     return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
 
-def sum_of_kills():   
-    return #db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
-    # sum of value = SELECT sum(kills) FROM stata t1 WHERE stata_id = (SELECT max(stata_id) FROM stata WHERE t1.user_id = stata.user_id) ORDER BY stata_id DESC
+def total_stat():
+    #user_id = session['user_id']
+    #return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
+    return db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).limit(3)
+    
+    
+    # sum = SELECT sum(kills) FROM stata t1 WHERE stata_id = (SELECT max(stata_id) FROM stata WHERE t1.user_id = stata.user_id) ORDER BY stata_id DESC
     # return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.asc())
 
     # latest record = select kills from stata order by stata_id desc limit 1
@@ -54,6 +58,12 @@ def sum_of_kills():
     #return db.session.query(Stata).filter(user_id, func.max(stat_id))  
     #   SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
     #   return db.session.query(Stata).filter_by(user_id='1', stata_id=func.max(Stata.stata_id))  
+    #
+    #   working query:
+    #   select sum(kills) from
+    #   (select user_id, kills , max(stata_id)
+    #   from stata
+    #   group by user_id);
 
 
 
@@ -151,10 +161,18 @@ def profile():
     return render_template(
         'profile.html',
         username = session['name'],
-        stat_on_page = statistics_on_page()
+        profile_stat = profile_stat()
         )
 
 
+@app.route('/statistics')
+@login_required
+def statistics():
+    return render_template(
+        'statistics.html',
+        username = session['name'],
+        total_stat = total_stat()
+        )
 
 # main - empty for now
 @app.route('/main')
@@ -178,14 +196,6 @@ def progress():
     return render_template('progress.html',
         username = session['name'])
 
-
-@app.route('/statistics')
-@login_required
-def statistics():
-    return render_template('statistics.html',
-        username = session['name'],
-        sum_kills = sum_of_kills()
-        )
 
 
 @app.route('/teamspeak2')
