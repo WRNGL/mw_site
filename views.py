@@ -42,10 +42,26 @@ def profile_stat():
     user_id = session['user_id']
     return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
 
-def total_stat():
-    #user_id = session['user_id']
-    #return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
-    return db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).limit(3)
+def total_kills():
+    inn = db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.kills)).scalar()
+
+def total_deaths():
+    inn = db.session.query(Stata).filter(Stata.user_id, Stata.deaths, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.deaths)).scalar()
+
+def total_wins():
+    inn = db.session.query(Stata).filter(Stata.user_id, Stata.wins, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.wins)).scalar()
+
+def total_losses():
+    inn = db.session.query(Stata).filter(Stata.user_id, Stata.losses, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.losses)).scalar()
+
+def total_cbills():
+    inn = db.session.query(Stata).filter(Stata.user_id, Stata.cbills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.cbills)).scalar()
+
     
     
     # sum = SELECT sum(kills) FROM stata t1 WHERE stata_id = (SELECT max(stata_id) FROM stata WHERE t1.user_id = stata.user_id) ORDER BY stata_id DESC
@@ -111,6 +127,8 @@ def login():
             else:
                 error = 'Invalid username or password.'   
     return render_template('login.html', form=form, error=error)
+
+
 # Log Out
 @app.route('/logout/')
 def logout():
@@ -171,7 +189,11 @@ def statistics():
     return render_template(
         'statistics.html',
         username = session['name'],
-        total_stat = total_stat()
+        total_kills = total_kills(),
+        total_deaths = total_deaths(),
+        total_wins = total_wins(),
+        total_losses = total_losses(),
+        total_cbills = total_cbills(),
         )
 
 # main - empty for now
