@@ -31,7 +31,7 @@ class Stata(db.Model):
 	exp_points = db.Column(db.String(20))
 	wins = db.Column(db.String(8))
 	losses = db.Column(db.String(8))
-	timestamp = db.Column(db.Date, default=datetime.datetime.utcnow())
+	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 	def __init__(self, mc, kills, deaths, cbills, exp_points, wins, losses, timestamp, user_id):

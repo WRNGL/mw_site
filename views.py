@@ -126,7 +126,7 @@ def login():
                 return redirect(url_for('main'))
             else:
                 error = 'Invalid username or password.'   
-    return render_template('login.html', form=form, error=error)
+    return render_template('login.html', form=form, error=error, username = session['name'])
 
 
 # Log Out
