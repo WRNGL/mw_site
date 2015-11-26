@@ -24,13 +24,13 @@ class User(db.Model):
 class Stata(db.Model):
 	__tablename__ = 'stata'
 	stata_id = db.Column(db.Integer, primary_key = True)
-	mc = db.Column(db.String(8))
-	kills = db.Column(db.String(8))
-	deaths = db.Column(db.String(8))
-	cbills = db.Column(db.String(10))
-	exp_points = db.Column(db.String(20))
-	wins = db.Column(db.String(8))
-	losses = db.Column(db.String(8))
+	mc = db.Column(db.Integer)
+	kills = db.Column(db.Integer)
+	deaths = db.Column(db.Integer)
+	cbills = db.Column(db.Integer)
+	exp_points = db.Column(db.Integer)
+	wins = db.Column(db.Integer)
+	losses = db.Column(db.Integer)
 	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 

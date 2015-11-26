@@ -81,7 +81,16 @@ def total_cbills():
     #   from stata
     #   group by user_id);
 
-
+def top_users_kills():
+    return db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # LIMIT 1 OFFSET 3;
+    # select name, max(kills) as jew from
+    # (SELECT users.name, stata.mc, stata.kills, stata.deaths, stata.cbills, stata.exp_points, stata.wins,
+    # stata.losses
+    # FROM stata
+    # INNER JOIN users
+    # ON stata.user_id=users.id)
+    # group by name order by jew desc;;
 
 
 # User Registration:
