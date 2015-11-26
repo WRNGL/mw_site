@@ -82,7 +82,9 @@ def total_cbills():
     #   group by user_id);
 
 def top_users_kills():
-    return db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.max(Stata.kills).group_by(Stata.user_id)).all()
+    # select max(kills) from stata group by user_id;
+    #
     # LIMIT 1 OFFSET 3;
     # select name, max(kills) as jew from
     # (SELECT users.name, stata.mc, stata.kills, stata.deaths, stata.cbills, stata.exp_points, stata.wins,
@@ -135,7 +137,7 @@ def login():
                 return redirect(url_for('main'))
             else:
                 error = 'Invalid username or password.'   
-    return render_template('login.html', form=form, error=error, username = session['name'])
+    return render_template('login.html', form=form, error=error)
 
 
 # Log Out
@@ -203,6 +205,7 @@ def statistics():
         total_wins = total_wins(),
         total_losses = total_losses(),
         total_cbills = total_cbills(),
+        tk = top_users_kills()
         )
 
 # main - empty for now
