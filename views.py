@@ -75,15 +75,16 @@ def total_cbills():
     #   SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
     #   return db.session.query(Stata).filter_by(user_id='1', stata_id=func.max(Stata.stata_id))  
     #
-    #   working query:
-    #   select sum(kills) from
-    #   (select user_id, kills , max(stata_id)
-    #   from stata
-    #   group by user_id);
+
 
 def top_users_kills():
     #return db.session.query(Stata.kills).group_by(Stata.user_id).all()
-    return db.session.query(Stata.user_id, User.name).group_by(Stata.user_id).join(User).order_by(Stata.kills.desc())
+    user_id = Stata.user_id.label("user_id")
+    name = User.name.label("name")
+    kills = Stata.kills.label("kills")
+    inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc())
+    x = db.session.query(name)
+    return x
 
 
     
