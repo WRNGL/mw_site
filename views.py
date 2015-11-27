@@ -82,7 +82,12 @@ def total_cbills():
     #   group by user_id);
 
 def top_users_kills():
-    return db.session.query(func.max(Stata.kills).group_by(Stata.user_id)).all()
+    #return db.session.query(Stata.kills).group_by(Stata.user_id).all()
+    return db.session.query(Stata.user_id, User.name).group_by(Stata.user_id).join(User).order_by(Stata.kills.desc())
+
+
+    
+    
     # select max(kills) from stata group by user_id;
     #
     # LIMIT 1 OFFSET 3;
