@@ -62,30 +62,45 @@ def total_cbills():
     inn = db.session.query(Stata).filter(Stata.user_id, Stata.cbills, Stata.stata_id).group_by(Stata.user_id).subquery()
     return db.session.query(func.sum(inn.columns.cbills)).scalar()
 
-    
-    
-    # sum = SELECT sum(kills) FROM stata t1 WHERE stata_id = (SELECT max(stata_id) FROM stata WHERE t1.user_id = stata.user_id) ORDER BY stata_id DESC
-    # return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.asc())
-
-    # latest record = select kills from stata order by stata_id desc limit 1
-
-    #return db.session.query(Stata).filter(user_id=user_id, stata_id).order_by(func.max(Stata.stata_id))
-
-    #return db.session.query(Stata).filter(user_id, func.max(stat_id))  
-    #   SELECT kills FROM stata where user_id = '1' and stata_id = (SELECT MAX(stata_id)  FROM stata);
-    #   return db.session.query(Stata).filter_by(user_id='1', stata_id=func.max(Stata.stata_id))  
-    #
-
 
 def top_users_kills():
-    #return db.session.query(Stata.kills).group_by(Stata.user_id).all()
+    user_id = Stata.user_id.label("user_id")
+    name = User.name.label("name")
+    kills = Stata.kills.label("kills")
+    return db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc()).all()
+    
+def top_users_wins():
+    user_id = Stata.user_id.label("user_id")
+    name = User.name.label("name")
+    wins = Stata.wins.label("wins")
+    return db.session.query(user_id, name).group_by(user_id).join(User).order_by(wins.desc()).all()
+    '''
+    inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(wins.desc())
+    x = db.session.query(name)
+    return x
+    '''
+
+def top_users_jews():
+    user_id = Stata.user_id.label("user_id")
+    name = User.name.label("name")
+    cbills = Stata.cbills.label("cbills")
+    return db.session.query(user_id, name).group_by(user_id).join(User).order_by(cbills.desc()).all()
+
+def top_kills_val():
     user_id = Stata.user_id.label("user_id")
     name = User.name.label("name")
     kills = Stata.kills.label("kills")
     inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc())
-    x = db.session.query(name)
+    x = db.session.query(kills)
     return x
 
+def top_wins_val():
+    user_id = Stata.user_id.label("user_id")
+    name = User.name.label("name")
+    wins = Stata.wins.label("wins")
+    inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(wins.desc())
+    x = db.session.query(wins)
+    return x
 
     
     
@@ -99,6 +114,13 @@ def top_users_kills():
     # INNER JOIN users
     # ON stata.user_id=users.id)
     # group by name order by jew desc;;
+
+
+
+##########################
+#### helper functions ####
+##########################
+
 
 
 # User Registration:
@@ -211,7 +233,11 @@ def statistics():
         total_wins = total_wins(),
         total_losses = total_losses(),
         total_cbills = total_cbills(),
-        tk = top_users_kills()
+        tk = top_users_kills(),
+        tkv = top_kills_val(),
+        tw = top_users_wins(),
+        twv = top_wins_val(),
+        tj = top_users_jews()
         )
 
 # main - empty for now
