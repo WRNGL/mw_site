@@ -7,6 +7,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from forms import RegisterForm, LoginForm, AddStataForm
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import text, select, func
+from sqlalchemy import desc
 from statparser import Statz
 import datetime, requests
 from flask.ext.bcrypt import Bcrypt
@@ -91,7 +92,7 @@ def top_kills_val():
     name = User.name.label("name")
     kills = Stata.kills.label("kills")
     inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc())
-    x = db.session.query(kills)
+    x = db.session.query(kills).order_by(desc(kills))
     return x
 
 def top_wins_val():
@@ -99,7 +100,7 @@ def top_wins_val():
     name = User.name.label("name")
     wins = Stata.wins.label("wins")
     inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(wins.desc())
-    x = db.session.query(wins)
+    x = db.session.query(wins).order_by(desc(wins))
     return x
 
     
