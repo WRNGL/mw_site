@@ -12,11 +12,13 @@ class User(db.Model):
 	name = db.Column(db.String, unique = True, nullable = False)
 	email = db.Column(db.String, unique = True, nullable = False)
 	password = db.Column(db.String, nullable = False)
+	is_member = db.Column(db.String)
 
-	def __init__(self, name = None, email = None, password = None):
+	def __init__(self, name = None, email = None, password = None, is_member = None):
 		self.name = name
 		self.email = email
 		self.password = password
+		self.is_member = is_member
 
 	def __repr__(self):
 		return '<User %r>' % (self.name)
