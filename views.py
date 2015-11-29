@@ -91,17 +91,16 @@ def top_kills_val():
     user_id = Stata.user_id.label("user_id")
     name = User.name.label("name")
     kills = Stata.kills.label("kills")
-    inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc())
-    x = db.session.query(kills).order_by(desc(kills))
-    return x
+    inn = db.session.query(user_id, name, kills).group_by(user_id).join(User)
+    return inn.order_by(kills.desc()).all()
+    #return db.session.query(kills).order_by(desc(kills))
 
 def top_wins_val():
     user_id = Stata.user_id.label("user_id")
     name = User.name.label("name")
     wins = Stata.wins.label("wins")
-    inn = db.session.query(user_id, name).group_by(user_id).join(User).order_by(wins.desc())
-    x = db.session.query(wins).order_by(desc(wins))
-    return x
+    inn = db.session.query(user_id, name, wins).group_by(user_id).join(User)
+    return inn.order_by(wins.desc()).all()
 
     
     
