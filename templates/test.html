@@ -1,0 +1,38 @@
+{% extends "template.html" %}
+{% block content %}
+
+ТЕСТОВАЯ СТРАНИЦА <h4>
+{% if session.logged_in %} {{username}} {% endif %}
+</h4>
+<br>
+ТЕСТОВАЯ СТРАНИЦА 
+<br>
+Текущие значения из базы:
+<br>
+<br>
+
+<div style="margin: 0px 15px 15px 15px;">						
+	<table class="table table-striped">
+		<thead>
+			<tr>	
+				<th width="50%">Поле</th>
+				<th width="50%">Значение</th>		
+			</tr>	
+		</thead>		
+		<tbody>		
+			<tr>
+				<td>MC</td>
+				<td>{{ test }}</td>
+
+		</tbody>	
+	</table>
+</div>
+
+<br>
+<br>
+Хотите заслать данные? 
+<br>Вам <a href='/stat_submit'>сюда.</a>
+<br>
+<p>
+<p>
+{% endblock %}

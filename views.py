@@ -44,31 +44,42 @@ def profile_stat():
     return db.session.query(Stata).filter_by(user_id=user_id).order_by(Stata.stata_id.desc()).limit(1)
 
 def total_kills():
-    inn = db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
-    return db.session.query(func.sum(inn.columns.kills)).scalar()
+    # inn = db.session.query(Stata).filter(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # return db.session.query(func.sum(inn.columns.kills)).scalar()
+    inn = db.session.query(Stata.user_id, Stata.kills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.kills))
 
 def total_deaths():
-    inn = db.session.query(Stata).filter(Stata.user_id, Stata.deaths, Stata.stata_id).group_by(Stata.user_id).subquery()
-    return db.session.query(func.sum(inn.columns.deaths)).scalar()
+    # inn = db.session.query(Stata).filter(Stata.user_id, Stata.deaths, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # return db.session.query(func.sum(inn.columns.deaths)).scalar()
+    inn = db.session.query(Stata.user_id, Stata.deaths, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.deaths))
 
 def total_wins():
-    inn = db.session.query(Stata).filter(Stata.user_id, Stata.wins, Stata.stata_id).group_by(Stata.user_id).subquery()
-    return db.session.query(func.sum(inn.columns.wins)).scalar()
+    # inn = db.session.query(Stata).filter(Stata.user_id, Stata.wins, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # return db.session.query(func.sum(inn.columns.wins)).scalar()
+    inn = db.session.query(Stata.user_id, Stata.wins, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.wins))
 
 def total_losses():
-    inn = db.session.query(Stata).filter(Stata.user_id, Stata.losses, Stata.stata_id).group_by(Stata.user_id).subquery()
-    return db.session.query(func.sum(inn.columns.losses)).scalar()
+    # inn = db.session.query(Stata).filter(Stata.user_id, Stata.losses, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # return db.session.query(func.sum(inn.columns.losses)).scalar()
+    inn = db.session.query(Stata.user_id, Stata.losses, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.losses))
 
 def total_cbills():
-    inn = db.session.query(Stata).filter(Stata.user_id, Stata.cbills, Stata.stata_id).group_by(Stata.user_id).subquery()
-    return db.session.query(func.sum(inn.columns.cbills)).scalar()
+    # inn = db.session.query(Stata).filter(Stata.user_id, Stata.cbills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    # return db.session.query(func.sum(inn.columns.cbills)).scalar()
+    inn = db.session.query(Stata.user_id, Stata.cbills, Stata.stata_id).group_by(Stata.user_id).subquery()
+    return db.session.query(func.sum(inn.columns.cbills))
 
 
 def top_users_kills():
     user_id = Stata.user_id.label("user_id")
     name = User.name.label("name")
     kills = Stata.kills.label("kills")
-    return db.session.query(user_id, name).group_by(user_id).join(User).order_by(kills.desc()).all()
+    x = db.session.query(user_id, name).group_by(user_id).subquery()
+    return db.session.query(x.join(User)).all()
     
 def top_users_wins():
     user_id = Stata.user_id.label("user_id")
@@ -269,3 +280,11 @@ def progress():
 def teamspeak2():
     return render_template('teamspeak2.html',
         username = session['name'])
+
+@app.route('/test')
+@login_required
+def test():
+    return render_template('test.html',
+        username = session['name'],
+        total_kills = total_kills()
+        )
